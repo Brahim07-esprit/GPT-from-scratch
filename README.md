@@ -28,9 +28,17 @@ Requirements
 Installation
 ------------
 
-1.  bashCopy codegit clone https://github.com/yourusername/your-repo-name.gitcd your-repo-name
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/Brahim07-esprit/GPT-from-scratch.git
+    cd GPT-from-scratch
+    ```
     
-2.  bashCopy codepip install torchMake sure you have PyTorch installed with CUDA support if you plan to use a GPU.
+2.  **Install dependencies**
+    ```bash
+    pip install torch
+    ```
+    Make sure you have PyTorch installed with CUDA support if you plan to use a GPU.
     
 
 Usage
@@ -38,17 +46,25 @@ Usage
 
 ### Prepare Your Dataset
 
-*   Place your training text data in a file named data.txt in the project directory.
+*   Place your training text data in a file named `data.txt` in the project directory.
     
 
 ### Training the Model
 
-*   bashCopy codepython train.pyThe script will start training the model using the dataset provided.
+*   Run the training script:
+    ```bash
+    python gpt.py
+    ```
     
 
 ### Generating Text
 
-*   pythonCopy codecontext = torch.zeros((1, 1), dtype=torch.long, device=device)print(decode(model.generate(context, max\_new\_tokens=500)\[0\].tolist()))You can adjust max\_new\_tokens to control the length of the generated text.
+*   After training, the script will generate text based on the trained model:
+    ```bash
+    context = torch.zeros((1, 1), dtype=torch.long, device=device)
+    print(decode(model.generate(context, max_new_tokens=500)[0].tolist()))
+    ```
+
     
 
 Hyperparameters
@@ -56,23 +72,23 @@ Hyperparameters
 
 You can adjust the hyperparameters at the beginning of the script to experiment with different settings:
 
-*   batch\_size: Number of sequences processed in parallel.
+*   `batch_size`: Number of sequences processed in parallel.
     
-*   block\_size: Maximum context length for predictions.
+*   `block_size`: Maximum context length for predictions.
     
-*   max\_iters: Total number of training iterations.
+*   `max_iters`: Total number of training iterations.
     
-*   eval\_interval: Interval for evaluating on validation set.
+*   `eval_interval`: Interval for evaluating on validation set.
     
-*   learning\_rate: Learning rate for the optimizer.
+*   `learning_rate`: Learning rate for the optimizer.
     
-*   n\_embd: Embedding dimension.
+*   `n_embd`: Embedding dimension.
     
-*   n\_head: Number of attention heads.
+*   `n_head`: Number of attention heads.
     
-*   n\_layer: Number of Transformer blocks.
+*   `n_layer`: Number of Transformer blocks.
     
-*   dropout: Dropout rate for regularization.
+*   `dropout`: Dropout rate for regularization.
     
 
 Code Overview
@@ -82,15 +98,15 @@ Code Overview
     
 *   **Model Architecture**:
     
-    *   Head: Implements one head of self-attention.
+    *   `Head`: Implements one head of self-attention.
         
-    *   MultiHeadAttention: Combines multiple attention heads.
+    *   `MultiHeadAttention`: Combines multiple attention heads.
         
-    *   FeedForward: Simple feed-forward neural network.
+    *   `FeedForward`: Simple feed-forward neural network.
         
-    *   Block: Combines attention and feed-forward layers with residual connections.
+    *   `Block`: Combines attention and feed-forward layers with residual connections.
         
-    *   GPTLanguageModel: Puts everything together into a full model.
+    *   `GPTLanguageModel`: Puts everything together into a full model.
         
 *   **Training Loop**: Handles batching, loss computation, backpropagation, and optimization.
     
@@ -102,9 +118,11 @@ Example Output
 
 After training, the model may generate text like:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   vbnetCopy codeTo be, or not to be, that is the question:  Whether 'tis nobler in the mind to suffer  The slings and arrows of outrageous fortune...   `
-
-_(Note: The actual output will vary based on your dataset and training duration.)_
+```bash
+To be, or not to be, that is the question:
+Whether 'tis nobler in the mind to suffer
+The slings and arrows of outrageous fortune...
+```
 
 Acknowledgments
 ---------------
